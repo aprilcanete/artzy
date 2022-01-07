@@ -1,0 +1,11 @@
+
+<h1><%= art["name"] %></h1>
+
+<img src="<%= art["image_url"] %>" alt="<%= art["name"] %>" >
+
+<form action="/arts/<%= art['id'] %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button>remove</button>
+</form>
+
+<a href="/arts/<%= art['id']%>/edit">update</a>

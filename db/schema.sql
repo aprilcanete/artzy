@@ -26,3 +26,9 @@ create table comments (
     art_id int
 );
 
+
+insert into arts (name, image_url)
+values ('art 1', 'http://via.placeholder.com/200x200');
+
+insert into arts (name, image_url)
+values ('art 2', 'http://via.placeholder.com/200x200');

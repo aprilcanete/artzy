@@ -8,12 +8,36 @@
 </head>
 <body>
   <header>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     <h1>Artzy</h1>
     <div class="nav-bar">
       <a href="/">home</a>
       <a href="/about">about</a>
-      <a href="/users">login</a>
+      <% if logged_in? %>
+        <a href="/users/arts">profile</a>
+        <a href="/arts/new">post art</a>
+      <% else %>
+        <a href="/users">login</a>
+      <% end %>
     </div>
+    
+    <% if logged_in? %>
+      <div class="dropdown">
+        <img class="user-icon" src="/images/user.png" style="width:20px;" alt="" srcset="">
+        <p class="user-name"><strong><%= current_user.name %></strong></p>
+
+        <div class="dropdown-content">
+          <form action="/users/session" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button class="dropdown-content">logout</button>
+          </form> 
+        </div>
+      </div>  
+    <% end %>
+
   </header>
   
   <%= yield %>
