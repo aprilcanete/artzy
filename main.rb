@@ -84,12 +84,16 @@ get '/arts/new' do
 end
 
 get '/users/arts' do
+  redirect '/users' unless logged_in?
+
   result = user_arts(current_user.id)
 
   erb :profile, locals:{arts: result }
 end
 
 post '/arts' do
+  redirect '/users' unless logged_in?
+
   file = params['image']['tempfile']
 
   result =  Cloudinary::Uploader.upload(file, options)
@@ -100,6 +104,8 @@ post '/arts' do
 end
 
 get '/arts/:id' do
+  redirect '/users' unless logged_in?
+
   id = params['id']
 
   art = db_query("select * from arts where id = $1", [id]).first
@@ -108,13 +114,25 @@ get '/arts/:id' do
 end
 
 get '/arts/:id/edit' do
+  redirect '/users' unless logged_in?
 
+  result = db_query("select * from arts where id = $1", [params['id']]).first
+
+  erb :edit, locals: {art: result}
 end
 
 put '/arts/:id' do
+  file = params['image']['tempfile']
 
+  result =  Cloudinary::Uploader.upload(file, options)
+
+  update_art(params['name'], result["url"], params['id'])
+
+  redirect "/arts/#{params['id']}"
 end
 
 delete '/arts/:id' do
+  delete_art(params['id'])
 
+  redirect '/users/arts'
 end

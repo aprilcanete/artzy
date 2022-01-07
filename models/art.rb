@@ -27,3 +27,18 @@ def user_arts(user_id)
 
     db_query(sql, [user_id])
 end
+
+def update_art(name, image_url, id)
+    sql = "update arts 
+            set name = $1, 
+            image_url = $2
+        where id = $3;"
+
+    db_query(sql, [name, image_url, id])
+end
+
+def delete_art(id)
+    sql = "delete from arts where id = $1;"
+
+    db_query(sql, [id])
+end
