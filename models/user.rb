@@ -12,3 +12,9 @@ def create_user(name, email, password)
 
     db_query(sql, [name, email, password_digest])
 end
+
+def get_username(user_id)
+    result = db_query("select name from users where id = $1;", [user_id])
+
+    result.first['name']
+end

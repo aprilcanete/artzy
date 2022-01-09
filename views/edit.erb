@@ -1,14 +1,21 @@
+<div class="row d-flex justify-content-center">
+    <div id="form-update"  class="col-md-5">
+        <h2>Update Post</h2>
+        <form action="/arts/<%= art['id']%>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="put">
 
-<h1>Update Post</h1>
+            <div class="form-floating mb-3">
+                <input name="name" type="text" class="form-control" id="floatingInput" value="<%= art['name'] %>" >
+                <label for="floatingInput">Art name</label>
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Upload image</label>
+                <input name="image" class="form-control" type="file" id="formFile">
+            </div>
 
-<form action="/arts/<%= art['id']%>" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="_method" value="put">
-    
-    <label for="">name:</label>
-    <input type="text" name="name" value="<%= art['name'] %>">
+            <button class="btn-form">update</button>
+        </form>
+    </div>
+</div>
 
-    <label for="name">image url:</label>
-    <input type="file" name="image">
 
-    <button>update</button>
-</form>

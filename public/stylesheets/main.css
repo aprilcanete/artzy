@@ -6,7 +6,7 @@ body {
 
 .app {
   width: 65%;
-  height: 80%;
+  height: 100vw;
   margin: 0 auto;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.7);
@@ -55,12 +55,12 @@ header {
 }
 
 .art-img {
-  width: 300px;
+  width: 320px;
   height: 200px;
 }
 
 .show-art-img {
-  width: 100%;
+  width: 80%;
   height: 400px;
 }
 
@@ -83,7 +83,8 @@ header {
   font-size: 20px;
 }
  
-.nav > a:active {
+#current-nav-item {
+  font-weight: bold;
   text-decoration: underline;    
 }
 
@@ -141,4 +142,42 @@ header {
 
 .gallery-container {
   margin-top: 20px;
+}
+
+.remove-btn {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-family: 'Poiret One', cursive;
+  /*input has OS specific font-family*/
+  /* color: #fff; */
+  /* font-size: 18px; */
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.edit-link {
+  color: #000;
+}
+
+form {
+  display: inline;
+}
+
+#form-update {
+  height: 400px;
+  text-align: center;
+  margin-top: 10px;
+  padding: 20px 40px;
+}
+
+#post-btn-container {
+  margin-top: 80px;
+}
+
+.p-one {
+  float: left;
+}
+.p-two {
+  float: right;
 }

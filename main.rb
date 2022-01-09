@@ -38,8 +38,25 @@ def current_user()
   return OpenStruct.new(user)
 end
 
+def active_page?(path='')
+  request.path_info == '/' + path
+end
+
 get '/' do
-    erb :index
+  result = all_arts()
+  # binding.pry
+  # arts = []
+
+  # result.each do |art|
+  #   art
+  # end
+  # return result.to_a
+
+  erb :index, locals: {arts: result}
+end
+
+get '/about' do
+  erb :about
 end
 
 get '/users' do

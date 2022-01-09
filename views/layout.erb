@@ -31,21 +31,21 @@
     <h1 class="logo">Artzy</h1>
     <ul class="nav justify-content-center">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/">home</a>
+        <a class="nav-link" href="/" id=<%= "current-nav-item" if active_page?("") %>>home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/about">about</a>
+        <a class="nav-link" href="/about" id=<%= "current-nav-item" if active_page?("about") %>>about</a>
       </li>
       <% if logged_in? %>
         <li class="nav-item">
-          <a class="nav-link"  href="/users/arts">profile</a>
+          <a class="nav-link" href="/users/arts" id=<%= "current-nav-item" if active_page?("users/arts") %> >profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/arts/new">post art</a>
-        </li> 
+          <a class="nav-link" href="/arts/new" id=<%= "current-nav-item" if active_page?("arts/new") %>>post art</a>
+        </li>
       <% else %>
         <li class="nav-item">
-          <a class="nav-link" href="/users">login</a>
+          <a class="nav-link" href="/users" id=<%= "current-nav-item" if active_page?("users") %>>login</a>
         </li>
       <% end %>
     </ul>
@@ -53,7 +53,10 @@
   
 
   <%= yield %>
-
+  <footer class="navbar fixed-bottom navbar-light bg-light">
+    <p class="p-one">&copy; 2022 Artzy</p>
+    <p class="p-two">Developed by April Canete</p>
+  </footer>
   </div>
 </body>
 </html>

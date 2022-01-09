@@ -2,10 +2,11 @@
 <h2><%= art["name"] %></h2>
 
 <img class="show-art-img" src="<%= art["image_url"] %>" alt="<%= art["name"] %>" >
+<h1></h1>
+<a class="edit-link" href="/arts/<%= art['id']%>/edit">edit</a>
 
 <form action="/arts/<%= art['id'] %>" method="post">
     <input type="hidden" name="_method" value="delete">
-    <button class="remove-btn">remove</button>
+    <button class="remove-btn" onclick="return confirm('Are you sure you want to remove?');">remove</button>
 </form>
 
-<a href="/arts/<%= art['id']%>/edit">edit</a>
