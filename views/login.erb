@@ -1,22 +1,26 @@
 
-<div>
-    <h1>LOGIN</h1>
+<div class="row d-flex justify-content-center">
+    <div id="form"  class="col-md-5">
+        <h3>LOGIN</h3>
 
-    <% if params[:login_fail] == 'true' %>
-       <p>Incorrect login details, try again!</p> 
-    <% end %>
+        <% if params[:login_fail] == 'true' %>
+            <p>Incorrect login details, try again!</p> 
+        <% end %>
 
-    <form action="/users/session" method="post">
-        <label for="">email:</label>
-        <input type="email" name="email">
-
-        <label for="">password:</label>
-        <input type="password" name="password">
-
-        <button>login</button>
-    </form>
-
-    <p>Not a member yet? <a href="/users/new">Sign Up</a></p>
+        <form action="/users/session" method="post">
+            <div class="form-floating mb-3">
+                <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <button class="btn-form">login</button>
+        </form>
+        <p>Not a member yet? <a href="/users/new">Sign Up</a></p>
+    </div>
+    
 </div>
 
 

@@ -1,12 +1,17 @@
+<div class="row d-flex justify-content-center">
+    <div id="form"  class="col-md-5">
+        <h2>Post Art</h2>
 
-<h1>Post Art</h1>
-
- <form action="/arts" method="post" enctype="multipart/form-data">
-    <label for="">art name:</label>
-    <input type="text" name="name">
-
-    <label for="">art photo:</label>
-    <input type="file" name="image">
-
-    <button>submit</button>
-</form>
+        <form action="/arts" method="post" enctype="multipart/form-data">
+            <div class="form-floating mb-3">
+                <input name="name" type="text" class="form-control" id="floatingInput" required>
+                <label for="floatingInput">Art name</label>
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Upload image</label>
+                <input name="image" class="form-control" type="file" id="formFile">
+            </div>
+            <button class="btn-form">submit</button>
+        </form>
+    </div>
+</div>
