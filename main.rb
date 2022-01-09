@@ -10,7 +10,6 @@ require_relative 'models/user.rb'
 
 enable :sessions
 
-
 options = {
   cloud_name: 'dycwmgta7',
   api_key: '131628642812559',
