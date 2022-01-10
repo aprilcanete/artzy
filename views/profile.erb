@@ -5,7 +5,7 @@
         <div class="row gx-1">
             <% arts.each do |art| %>
                 <div class="col">
-                    <img src="<%= art["image_url"] %>" alt="<%= art["name"] %>" class="art-img">
+                    <img src="<%= art["image_url"] %>" alt="<%= art["name"] %>" class="art-img-p">
                     <p>
                         <a href="/arts/<%= art["id"] %>"><%= art["name"] %></a>
                     </p>

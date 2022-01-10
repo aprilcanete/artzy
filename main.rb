@@ -42,6 +42,10 @@ def active_page?(path='')
   request.path_info == '/' + path
 end
 
+def art_belong_to_curr_user?(art_user_id)
+  true if art_user_id == current_user.id 
+end
+
 get '/' do
   result = all_arts()
   # binding.pry
@@ -122,11 +126,19 @@ end
 get '/arts/:id' do
   redirect '/users' unless logged_in?
 
-  id = params['id']
+  art_id = params['id']
 
-  art = db_query("select * from arts where id = $1", [id]).first
+  sql = "select a.*, u.name as user_name 
+        from arts a
+        left join users u
+        on a.user_id = u.id
+        where a.id = $1"
 
-  erb :show, locals: {id: id, art: art}
+  art = db_query(sql, [art_id]).first
+
+  comments = show_comments(art_id)
+
+  erb :show, locals: {id: art_id, art: art, comments: comments}
 end
 
 get '/arts/:id/edit' do
@@ -151,4 +163,12 @@ delete '/arts/:id' do
   delete_art(params['id'])
 
   redirect '/users/arts'
+end
+
+post '/comments' do
+  # redirect '/users' unless logged_in?
+
+  create_comment(params['comment'], current_user.id, params['art_id'])
+
+  redirect "/arts/#{params['art_id']}"
 end

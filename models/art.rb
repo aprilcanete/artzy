@@ -29,7 +29,10 @@ def create_art(name, image_url, user_id)
 end
 
 def user_arts(user_id)
-    sql = "select * from arts where user_id = $1 order by id desc;"
+    sql = "select a.*, u.name as user_name from arts a
+            left join users u
+            on a.user_id = u.id
+            where user_id = $1 order by id desc;"
 
     db_query(sql, [user_id])
 end
@@ -47,4 +50,20 @@ def delete_art(id)
     sql = "delete from arts where id = $1;"
 
     db_query(sql, [id])
+end
+
+def create_comment(comment, user_id, art_id)
+    sql = "insert into comments (comment, user_id, art_id) values ($1, $2, $3);"
+
+    db_query(sql, [comment, user_id, art_id])
+end
+
+def show_comments(art_id)
+    sql = "select c.*, u.name as user_name 
+            from comments c
+            left join users u
+            on c.user_id = u.id
+            where art_id = $1;"
+
+    db_query(sql, [art_id])
 end

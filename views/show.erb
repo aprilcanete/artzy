@@ -1,12 +1,32 @@
 
-<h2><%= art["name"] %></h2>
+<h2><strong><%= art["name"] %></strong> by <%= art["user_name"] %></h2>
 
 <img class="show-art-img" src="<%= art["image_url"] %>" alt="<%= art["name"] %>" >
 <h1></h1>
-<a class="edit-link" href="/arts/<%= art['id']%>/edit">edit</a>
 
-<form action="/arts/<%= art['id'] %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button class="remove-btn" onclick="return confirm('Are you sure you want to remove?');">remove</button>
+<% if art_belong_to_curr_user?(art['user_id']) %>
+    <a class="edit-link" href="/arts/<%= art['id']%>/edit">edit</a>
+
+    <form action="/arts/<%= art['id'] %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="remove-btn" onclick="return confirm('Are you sure you want to remove?');">remove</button>
+    </form>
+<% end %>
+
+<h4>comments</h4>
+<form action="/comments" method="post">
+    <div class="mb-3">
+        <input type="hidden" name="art_id" value="<%= art['id'] %>">
+        <textarea name="comment" class="form-control" rows="3"></textarea>
+    </div>
+    <button class="add-btn">add</button>
 </form>
 
+<div class="row gx-1">
+    <% comments.each do |comment| %>
+        <div class="col">
+            <p><%= comment["user_name"] %></p>
+            <p><%= comment["comment"] %></p>
+        </div>
+    <% end %> 
+</div>

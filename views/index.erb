@@ -1,31 +1,31 @@
 
-<% if logged_in? %>
-    <div class="gallery-container">
-        <h4>Gallery</h4>
-        <div class="container">
-            <div class="row gx-1">
-                <% arts.each do |art| %>
-                    <div class="col">
-                        <img src="<%= art["image_url"] %>" alt="<%= art["name"] %>" class="art-img">
-                        <p>
-                            <a href="/arts/<%= art["id"] %>"><%= art["name"] %></a> by <%= art["user_name"] %>
-                        </p>
-                    </div>
-                <% end %> 
-            </div>
+<div id="row" class="row d-flex justify-content-center">
+    <section class="col-md-4">
+        <p class="content-par">The Social Network for artists. <br>
+        Join, share your arts and interact with other cool artist like you!</p>
+    </section>
+</div>
+<div id="post-btn-container" class="row d-flex justify-content-center">
+    <div class="post-btn-wrapper">
+        <img class="post-img" src="/images/btn-animation.gif" alt="">
+        <a class="post-link" href="/users">Post Your Work!</a>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<div class="gallery-container">
+    <h4>Gallery</h4>
+    <div class="container">
+        <div class="row gx-1">
+            <% arts.each do |art| %>
+                <div class="col">
+                    <img src="<%= art["image_url"] %>" alt="<%= art["name"] %>" class="art-img-h">
+                    <p>
+                        <a href="/arts/<%= art["id"] %>"><%= art["name"] %></a> by <%= art["user_name"] %>
+                    </p>
+                </div>
+            <% end %> 
         </div>
     </div>
-<% else %>
-    <div id="row" class="row d-flex justify-content-center">
-        <section class="col-md-4">
-            <p class="content-par">The Social Network for artists. <br>
-            Join, share your arts and interact with other cool artist like you!</p>
-        </section>
-    </div>
-    <div id="post-btn-container" class="row d-flex justify-content-center">
-        <div class="post-btn-wrapper">
-            <img class="post-img" src="/images/btn-animation.gif" alt="">
-            <a class="post-link" href="/users">Post Your Work!</a>
-        </div>
-    </div>
-<% end %>
+</div>

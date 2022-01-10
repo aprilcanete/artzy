@@ -6,7 +6,7 @@ body {
 
 .app {
   width: 65%;
-  height: 100vw;
+  height: 150vw;
   margin: 0 auto;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.7);
@@ -54,7 +54,12 @@ header {
   margin-top: 50px;
 }
 
-.art-img {
+.art-img-h {
+  width: 200px;
+  height: 100px;
+}
+
+.art-img-p {
   width: 320px;
   height: 200px;
 }
