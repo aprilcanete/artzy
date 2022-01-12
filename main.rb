@@ -2,7 +2,7 @@ require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'pg'
 require 'bcrypt'
-# require 'pry'
+require 'pry' if development?
 require 'cloudinary' # upload media and image
 
 require_relative 'models/art.rb'
