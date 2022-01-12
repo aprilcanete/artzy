@@ -25,7 +25,7 @@ def logged_in?()
 end
 
 def current_user()
-  conn = PG.connect(ENV['DATABASE_URL'] || dbname: 'arts_app')
+  conn = PG.connect(ENV['DATABASE_URL'] || {dbname: 'arts_app'})
  
   sql = "select * from users where id = #{session[:user_id]}"
 
