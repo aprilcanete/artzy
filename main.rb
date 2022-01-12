@@ -166,7 +166,7 @@ delete '/arts/:id' do
 end
 
 post '/comments' do
-  # redirect '/users' unless logged_in?
+  redirect '/users' unless logged_in?
 
   create_comment(params['comment'], current_user.id, params['art_id'])
 
