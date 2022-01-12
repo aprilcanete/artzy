@@ -1,9 +1,9 @@
 require 'sinatra'
-require 'sinatra/reloader'
+require 'sinatra/reloader' if development?
 require 'pg'
 
 def db_query(sql, params = [])
-    conn = PG.connect(dbname: 'arts_app')
+    conn = PG.connect(ENV['DATABASE_URL'] || dbname: 'arts_app')
   
     result = conn.exec_params(sql, params)
   

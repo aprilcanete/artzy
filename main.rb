@@ -1,8 +1,8 @@
 require 'sinatra'
-require 'sinatra/reloader'
+require 'sinatra/reloader' if development?
 require 'pg'
 require 'bcrypt'
-require 'pry'
+# require 'pry'
 require 'cloudinary' # upload media and image
 
 require_relative 'models/art.rb'
@@ -25,7 +25,7 @@ def logged_in?()
 end
 
 def current_user()
-  conn = PG.connect(dbname: 'arts_app')
+  conn = PG.connect(ENV['DATABASE_URL'] || dbname: 'arts_app')
  
   sql = "select * from users where id = #{session[:user_id]}"
 
@@ -48,13 +48,6 @@ end
 
 get '/' do
   result = all_arts()
-  # binding.pry
-  # arts = []
-
-  # result.each do |art|
-  #   art
-  # end
-  # return result.to_a
 
   erb :index, locals: {arts: result}
 end
